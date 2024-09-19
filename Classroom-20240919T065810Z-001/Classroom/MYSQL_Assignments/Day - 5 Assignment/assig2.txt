@@ -1,0 +1,11 @@
+create table customer(
+custid int primary key,
+email_adress varchar(75),
+first_name varchar(50),
+last_name varchar(50),
+adress1 varchar(50),
+adress2 varchar(50),
+customer_zip varchar(10),
+area_code char(6),
+telephone_no char(10),
+);

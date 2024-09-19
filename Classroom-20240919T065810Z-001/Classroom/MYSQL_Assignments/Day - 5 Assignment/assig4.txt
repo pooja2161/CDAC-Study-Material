@@ -1,0 +1,105 @@
+1)
+alter table customer 
+add (mobile_no char(10));
+
+update customer set mobile_no = 3266287382 where custid = 1001;
+update customer set mobile_no = 8362893729 where custid = 1002;
+update customer set mobile_no = 9274352836 where custid = 1003;
+select*from customer;
+
++--------+-------------------+------------+-----------+----------+------------+--------------+-----------+--------------+------------+
+| custid | email_address     | first_name | last_name | adress1  | adress2    | customer_zip | area_code | telephone_no | mobile_no  |
++--------+-------------------+------------+-----------+----------+------------+--------------+-----------+--------------+------------+
+|   1001 | ram12@gmail.com   | Ram        | Sharma    | Boston   | Maharshtra | 234323       | 400016    | 8762863827   | 3266287382 |
+|   1002 | shyam76@gmail.com | Shyam      | Raut      | Panji    | Goa        | 100300       | 509278    | 9326856398   | 8362893729 |
+|   1003 | tina45@gmail.com  | Tina       | Thakur    | Kolahpur | Maharshtra | 983572       | 416503    | 8394768729   | 9274352836 |
++--------+-------------------+------------+-----------+----------+------------+--------------+-----------+--------------+------------+
+
+2)
+alter table customer
+modify mobile_no char(12);
+
+update customer set mobile_no = 326628738254 where custid = 1001;
+update customer set mobile_no = 326628738254 where custid = 1002;
+update customer set mobile_no = 927435283684 where custid = 1003;
+select*from customer
++--------+-------------------+------------+-----------+----------+------------+--------------+-----------+--------------+--------------+
+| custid | email_address     | first_name | last_name | adress1  | adress2    | customer_zip | area_code | telephone_no | mobile_no    |
++--------+-------------------+------------+-----------+----------+------------+--------------+-----------+--------------+--------------+
+|   1001 | ram12@gmail.com   | Ram        | Sharma    | Boston   | Maharshtra | 234323       | 400016    | 8762863827   | 326628738254 |
+|   1002 | shyam76@gmail.com | Shyam      | Raut      | Panji    | Goa        | 100300       | 509278    | 9326856398   | 326628738254 |
+|   1003 | tina45@gmail.com  | Tina       | Thakur    | Kolahpur | Maharshtra | 983572       | 416503    | 8394768729   | 927435283684 |
++--------+-------------------+------------+-----------+----------+------------+--------------+-----------+--------------+--------------+
+
+3)
+alter table customer
+drop area_code;
+select*from customer;
++--------+-------------------+------------+-----------+----------+------------+--------------+--------------+--------------+
+| custid | email_address     | first_name | last_name | adress1  | adress2    | customer_zip | telephone_no | mobile_no    |
++--------+-------------------+------------+-----------+----------+------------+--------------+--------------+--------------+
+|   1001 | ram12@gmail.com   | Ram        | Sharma    | Boston   | Maharshtra | 234323       | 8762863827   | 326628738254 |
+|   1002 | shyam76@gmail.com | Shyam      | Raut      | Panji    | Goa        | 100300       | 9326856398   | 326628738254 |
+|   1003 | tina45@gmail.com  | Tina       | Thakur    | Kolahpur | Maharshtra | 983572       | 8394768729   | 927435283684 |
++--------+-------------------+------------+-----------+----------+------------+--------------+--------------+--------------+
+
+4)
+alter table customer
+drop primary key
+desc customer;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| custid        | int         | NO   |     | NULL    |       |
+| email_address | varchar(75) | YES  |     | NULL    |       |
+| first_name    | varchar(50) | YES  |     | NULL    |       |
+| last_name     | varchar(50) | YES  |     | NULL    |       |
+| adress1       | varchar(50) | YES  |     | NULL    |       |
+| adress2       | varchar(50) | YES  |     | NULL    |       |
+| customer_zip  | varchar(10) | YES  |     | NULL    |       |
+| telephone_no  | char(10)    | YES  |     | NULL    |       |
+| mobile_no     | char(12)    | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+
+5)
+alter table customer
+add primary key(custid);
+desc customer; 
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| custid        | int         | NO   | PRI | NULL    |       |
+| email_address | varchar(75) | YES  |     | NULL    |       |
+| first_name    | varchar(50) | YES  |     | NULL    |       |
+| last_name     | varchar(50) | YES  |     | NULL    |       |
+| adress1       | varchar(50) | YES  |     | NULL    |       |
+| adress2       | varchar(50) | YES  |     | NULL    |       |
+| customer_zip  | varchar(10) | YES  |     | NULL    |       |
+| telephone_no  | char(10)    | YES  |     | NULL    |       |
+| mobile_no     | char(12)    | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+
+6)
+alter table customer
+add check(email_address like '%.com');
+select*from customer;
++--------+-------------------+------------+-----------+----------+------------+--------------+--------------+--------------+
+| custid | email_address     | first_name | last_name | adress1  | adress2    | customer_zip | telephone_no | mobile_no    |
++--------+-------------------+------------+-----------+----------+------------+--------------+--------------+--------------+
+|   1001 | ram12@gmail.com   | Ram        | Sharma    | Boston   | Maharshtra | 234323       | 8762863827   | 326628738254 |
+|   1002 | shyam76@gmail.com | Shyam      | Raut      | Panji    | Goa        | 100300       | 9326856398   | 326628738254 |
+|   1003 | tina45@gmail.com  | Tina       | Thakur    | Kolahpur | Maharshtra | 983572       | 8394768729   | 927435283684 |
++--------+-------------------+------------+-----------+----------+------------+--------------+--------------+--------------+
+
+7)
+alter table customer
+rename to cust_table;
+
+select*from cust_table;
++--------+-------------------+------------+-----------+----------+------------+--------------+--------------+--------------+
+| custid | email_address     | first_name | last_name | adress1  | adress2    | customer_zip | telephone_no | mobile_no    |
++--------+-------------------+------------+-----------+----------+------------+--------------+--------------+--------------+
+|   1001 | ram12@gmail.com   | Ram        | Sharma    | Boston   | Maharshtra | 234323       | 8762863827   | 326628738254 |
+|   1002 | shyam76@gmail.com | Shyam      | Raut      | Panji    | Goa        | 100300       | 9326856398   | 326628738254 |
+|   1003 | tina45@gmail.com  | Tina       | Thakur    | Kolahpur | Maharshtra | 983572       | 8394768729   | 927435283684 |
++--------+-------------------+------------+-----------+----------+------------+--------------+--------------+--------------+

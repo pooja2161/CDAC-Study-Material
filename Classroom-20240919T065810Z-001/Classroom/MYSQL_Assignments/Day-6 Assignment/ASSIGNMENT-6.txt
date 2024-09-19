@@ -1,0 +1,154 @@
++++++++++++++++++++++++++++++++++++++++++++++++ ASSIGNMENT 6 +++++++++++++++++++++++++++++++++++++++++++++
+						23 SEP 2023
+						-----------
+						SAGARIKA SINGHA
+						----------------
+						FORM NO- 230700024
+
+==========================================================================================================
+
+
+CREATE TABLE FOOTBALL_PLAYER(
+NAME VARCHAR(20),
+AGE INT(2),
+NO_MATCHES INT(4));
+
+
+INSERT INTO FOOTBALL_PLAYER VALUES('VIRAT',32,121);
+INSERT INTO FOOTBALL_PLAYER VALUES('RAINA',33,141);
+INSERT INTO FOOTBALL_PLAYER VALUES('DHONI',42,150);
+INSERT INTO FOOTBALL_PLAYER VALUES('SAM',22,91);
+
++-------+------+------------+
+| NAME  | AGE  | NO_MATCHES |
++-------+------+------------+
+| VIRAT |   32 |        121 |
+| RAINA |   33 |        141 |
+| DHONI |   42 |        150 |
+| SAM   |   22 |         91 |
++-------+------+------------+
+
+
+
+
+
+
+CREATE TABLE CRICKET_PLAYER(
+NAME VARCHAR(20),
+AGE INT(2),
+NO_MATCHES INT(4));
+
+
+INSERT INTO CRICKET_PLAYER VALUES('SAM',22,91);
+INSERT INTO CRICKET_PLAYER VALUES('ROHIT',27,131);
+INSERT INTO CRICKET_PLAYER VALUES('MESSI',32,143);
+INSERT INTO CRICKET_PLAYER VALUES('RAJ',28,132);
+
++-------+------+------------+
+| NAME  | AGE  | NO_MATCHES |
++-------+------+------------+
+| SAM   |   22 |         91 |
+| ROHIT |   27 |        131 |
+| MESSI |   32 |        143 |
+| RAJ   |   28 |        132 |
++-------+------+------------+
+
+
+
+
+
+SELECT * FROM FOOTBALL_PLAYER
+UNION ALL
+SELECT * FROM CRICKET_PLAYER;
+
++-------+------+------------+
+| NAME  | AGE  | NO_MATCHES |
++-------+------+------------+
+| VIRAT |   32 |        121 |
+| RAINA |   33 |        141 |
+| DHONI |   42 |        150 |
+| SAM   |   22 |         91 |
+| SAM   |   22 |         91 |
+| ROHIT |   27 |        131 |
+| MESSI |   32 |        143 |
+| RAJ   |   28 |        132 |
++-------+------+------------+
+
+
+
+
+
+SELECT * FROM FOOTBALL_PLAYER
+UNION
+SELECT * FROM CRICKET_PLAYER;
+
++-------+------+------------+
+| NAME  | AGE  | NO_MATCHES |
++-------+------+------------+
+| VIRAT |   32 |        121 |
+| RAINA |   33 |        141 |
+| DHONI |   42 |        150 |
+| SAM   |   22 |         91 |
+| ROHIT |   27 |        131 |
+| MESSI |   32 |        143 |
+| RAJ   |   28 |        132 |
++-------+------+------------+
+
+
+
+
+SELECT * FROM FOOTBALL_PLAYER
+UNION DISTINCT
+SELECT * FROM CRICKET_PLAYER;
++-------+------+------------+
+| NAME  | AGE  | NO_MATCHES |
++-------+------+------------+
+| VIRAT |   32 |        121 |
+| RAINA |   33 |        141 |
+| DHONI |   42 |        150 |
+| SAM   |   22 |         91 |
+| ROHIT |   27 |        131 |
+| MESSI |   32 |        143 |
+| RAJ   |   28 |        132 |
++-------+------+------------+
+
+===========================================================================================================
+===========================================================================================================
+
+
+DELIMITER //
+
+CREATE PROCEDURE CHECK_GRADE()
+BEGIN
+  DECLARE PERCENTAGE VARCHAR(50);
+  SET @MARKS = 75;
+  
+  IF @MARKS >= 80 THEN
+    SET PERCENTAGE = 'PASSED WITH DISTINCTION';
+  ELSEIF @MARKS >= 60 AND @MARKS < 80 THEN
+    SET PERCENTAGE = 'PASSED WITH FIRST CLASS';
+  ELSEIF @MARKS >= 50 AND @MARKS < 60 THEN
+    SET PERCENTAGE = 'PASSED WITH SECOND CLASS';
+  ELSEIF @MARKS >= 40 AND @MARKS < 50 THEN
+    SET PERCENTAGE = 'PASSED WITH PASS CLASS';
+  ELSE
+    SET PERCENTAGE = 'BETTER LUCK NEXT TIME';
+  END IF;
+  
+  SELECT PERCENTAGE AS Result;
+END;
+//
+
+DELIMITER ;
+CALL CHECK_GRADE;
+
++-------------------------+
+| Result                  |
++-------------------------+
+| PASSED WITH FIRST CLASS |
++-------------------------+
+
+
+====================================================================================
+					END
+====================================================================================

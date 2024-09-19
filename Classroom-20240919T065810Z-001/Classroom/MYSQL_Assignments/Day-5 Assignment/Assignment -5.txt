@@ -1,0 +1,28 @@
+                         Name    :Swarda R. Adwanikar
+                         Form no:230602321
+                         Date :23 Sep 2023
+===================================================================================
+Assignment - 5
+====================================================================================
+1.Display the name of the emp whoes sal is greater than sal of his manager. 
+--->
+ select a.ename from emp a where sal >(select b.sal from emp b
+where a.mgr=b.empno); 
+
++-------+
+| ename |
++-------+
+| SCOTT |
+| FORD  |
++-------+
+
+======================================================================================
+
+2.Display the name of the emp whoes commission is lesser than commission  of his manager.
+--->
+select a.ename from emp a 
+where comm <( select b.comm from emp b where a.mgr=b.empno);
+
+Empty set (0.00 sec)
+
+======================================================================================

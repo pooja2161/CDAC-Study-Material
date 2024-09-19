@@ -1,0 +1,26 @@
+
+Assignment:5
+			======================
+
+1.Display the name of the emp whoes sal is greater than sal of his manager.
+Ans-----------------------------
+
+mysql> select a.ename from employee a
+    -> where a.sal>
+    -> (select b.sal from employee b
+    -> where a.mgr=b.empno);
++-------+
+| ename |
++-------+
+| SCOTT |
+| FORD  |
++-------+
+2 rows in set (0.01 sec)
+
+
+2.Display the name of the emp whoes commission is lesser than commission  of his manager.
+mysql> select a.ename from employee a
+    -> where a.comm <
+    -> (select b.comm from employee b
+    -> where a.mgr=b.empno);
+Empty set (0.00 sec)

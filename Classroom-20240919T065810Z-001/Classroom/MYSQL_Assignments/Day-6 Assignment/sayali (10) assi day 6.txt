@@ -1,0 +1,115 @@
+eg create a stored procedure 'compare_demo' to store values in 2 variables and compare 2 var , display msg
+
+delimiter $$
+create procedure compare_demo()
+begin
+declare result varchar(20);
+set @a=100;
+set @b=200;
+if @a>@b then 
+set @result:='a is greater ';
+elseif @a<@b then 
+set @result:='b is greater ';
+else 
+set @result:='same';
+end if ;
+select @result;
+
+end;
+$$
+eg create a stored procedure 'compare_demo2' to store values in 3 variables and compare 3 var , display msg
+
+
+delimiter $$
+create procedure compare_demo2()
+begin
+declare result varchar(20);
+set @a=100;
+set @b=200;
+set @c=150;
+if @a>@b then 
+set @result:='a is greater ';
+elseif @a<@b then 
+set @result:='b is greater ';
+elseif @b<@c then 
+set @result:='c is greater ';
+else
+set @result:='same';
+end if ;
+select @result;
+
+end;
+$$
+
+
+
+
+ drop procedure check_grade;
+    -> $$
+
+create a stored procedure 'check_grade' , declare a variable percentage, store the value and check the foll conditions
+if  percentage >= 80	---> display "distinction "
+if  percentage >= 60   and <80 	---> display "first class "
+if  percentage >= 50 and <60	---> display "second class "
+if  percentage >= 40 and <50	---> display "pass clas "
+else  "better luck next time"
+
+
+delimiter $$
+create procedure check_grade2()
+begin
+
+declare result varchar(30);
+declare percentage int;
+
+set @percentage:=70;
+
+if @percentage>=80 then
+set @result:='distinction';
+
+elseif @percentage>=60  then
+set @result:='first class';
+
+elseif @percentage>=50 then
+set @result:='second class';
+
+elseif @percentage>=40 then
+set @result:='pass class';
+else 
+set @result:='better luck next time';
+end if ;
+select @result;
+end;
+$$ 
+
+
+
+create table football(
+name varchar(20),
+age numeric(3),
+no_match numeric(3));
+
+
+insert into football values('aish',23,4);
+insert into football values('sayali',21,3);
+insert into football values('priya',25,4);
+
+create table cricket(
+name varchar(20),
+age numeric(3),
+no_match numeric(3));
+
+insert into cricket values('aish',23,4);
+insert into cricket values('sayali',21,3);
+insert into cricket values('arti',22,5);
+
+select name,age,no_match from football
+union
+select name,age,no_match from cricket;
+
+select name,age,no_match from football
+union all
+select name,age,no_match from cricket;
+
+
+

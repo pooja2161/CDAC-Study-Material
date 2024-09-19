@@ -1,0 +1,53 @@
+1)
+update customer set adress1 = 'Boston' where custid = 1001;
+select*from customer;
++--------+-------------------+------------+-----------+----------+------------+--------------+-----------+--------------+
+| custid | email_address     | first_name | last_name | adress1  | adress2    | customer_zip | area_code | telephone_no |
++--------+-------------------+------------+-----------+----------+------------+--------------+-----------+--------------+
+|   1001 | ram12@gmail.com   | Ram        | Sharma    | Boston   | Maharshtra | 234323       | 400016    | 8762863827   |
+|   1002 | shyam76@gmail.com | Shyam      | Raut      | Panji    | Goa        | 928738       | 509278    | 9326856398   |
+|   1003 | tina45@gmail.com  | Tina       | Thakur    | Kolahpur | Maharshtra | 983572       | 416503    | 8394768729   |
++--------+-------------------+------------+-----------+----------+------------+--------------+-----------+--------------+
+
+2)
+ update customer set customer_zip = 100300 where custid = 1002;
+ select*from customer;
+ +--------+-------------------+------------+-----------+----------+------------+--------------+-----------+--------------+
+| custid | email_address     | first_name | last_name | adress1  | adress2    | customer_zip | area_code | telephone_no |
++--------+-------------------+------------+-----------+----------+------------+--------------+-----------+--------------+
+|   1001 | ram12@gmail.com   | Ram        | Sharma    | Boston   | Maharshtra | 234323       | 400016    | 8762863827   |
+|   1002 | shyam76@gmail.com | Shyam      | Raut      | Panji    | Goa        | 100300       | 509278    | 9326856398   |
+|   1003 | tina45@gmail.com  | Tina       | Thakur    | Kolahpur | Maharshtra | 983572       | 416503    | 8394768729   |
++--------+-------------------+------------+-----------+----------+------------+--------------+-----------+--------------+
+
+3)
+delete from cardinfo where card_id = 101;
+select*from cardinfo;
++---------+------------------+------------+--------------+---------------------+
+| card_id | ccnum            | ccexp      | name_on_card | email_address       |
++---------+------------------+------------+--------------+---------------------+
+|     102 | 7665438265748268 | 2028-11-23 | Shyam        | shyam76@gmail@gmail |
+|     103 | 7739964892685936 | 2030-07-06 | Tina         | tina45@gmail@gmail  |
++---------+------------------+------------+--------------+---------------------+
+
+4)
+truncate table cardinfo;
+select*from cardinfo;
+Empty set (0.00 sec)
+
+5)
+ desc cardinfo;
+ +---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| card_id       | int          | NO   | PRI | NULL    |       |
+| ccnum         | varchar(16)  | YES  |     | NULL    |       |
+| ccexp         | date         | YES  |     | NULL    |       |
+| name_on_card  | varchar(100) | YES  |     | NULL    |       |
+| email_address | varchar(75)  | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+
+6)
+drop table cardtype;
+select*from cardtype;
+ERROR 1146 (42S02): Table 'lnt.cardtype' doesn't exist

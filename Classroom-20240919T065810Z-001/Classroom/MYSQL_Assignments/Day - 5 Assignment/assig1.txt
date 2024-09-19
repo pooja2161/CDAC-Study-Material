@@ -1,0 +1,127 @@
+1) Select the employee in department 30.
+select*from emp
+where deptno = 30;
+
+2) List the names, numbers and department of all clerks.
+select*from emp
+where job = 'clerk';
+
+3) Find the depart numbers and the name of employee of all dept with Deptno greater or equal to 20.
+select ename, deptno from emp
+where deptno>=20;
+
+4) Find the employees whose commission is greater than their salary.
+select ename, sal, comm from emp
+where comm>sal;
+
+5) Find the employees whose commission is greater than 60 percent of their salary.
+select ename, sal, sal*0.6 as bonus from emp
+where comm>sal*0'6;
+
+6) Find the employee whose commission is greater than 50 percent of their salary.
+select ename, sal, sal*0.5 as bonus from emp
+where comm>sal*0'5;
+
+7) List the name, job and salary of all employees in dept 20 who earn more than 2000.
+select*from emp 
+where deptno = 20 and sal>2000;
+
+8) Find all salesmen in dept 30 whose salary is greater than or equal to Rs. 1500.
+select*from emp 
+where job = 'salesman' and deptno = 30 and sal>=1500;
+
+9) Find all the employees whose job is either a president or manager.
+select*from emp
+where job = 'president' or job = 'manager';
+
+10) Find all managers who are not in dept 30.
+select job, deptno from emp
+where job = 'manager' and deptno <> 30;
+
+11) Find the details of all managers and clerks in dept 10.
+select ename, job, deptno from emp
+where (job = 'manager' or job = 'clerk') and deptno = 10; 
+
+12) Find the details of all manager (in any dept) and all clerks in dept 10
+select ename, job, deptno from emp
+where job = 'manager' or (job = 'clerk' and deptno = 10);
+
+13) Find the details of all managers in dept 10 and all clerks in dept 20.
+select ename, job, deptno from emp
+where (job = 'manager' and deptno = 20) or (job = 'clerk' and deptno = 10);
+
+14) And all employees who are neither clerks nor manager but whose salary is greater than or equal to Rs. 2000.
+select ename, job, sal from emp
+where (job != 'clerk' and job != 'manager') and sal >= 2000;
+
+15)Find the names of everyone in deptno 20 who is neither a clerk nor a manager
+select ename, deptno, job from emp
+where (job != 'clerk' and job != 'manager') and deptno = 20;
+
+16)Find the employees who earns between Rs. 1200 and Rs. 1400
+select ename, sal from emp
+where sal between 1200 and 1400;
+
+17)Find the employees who are clerk, analysts or salesman.
+select ename , job from emp
+where job in ('clerk','analyst','salesman');
+
+18)Find the employees who are not clerk, analysts or salesman.
+select ename , job from emp
+where job not in ('clerk','analyst','salesman');
+
+19)Find the employee who do not receive a commission.
+select ename, comm from emp
+where comm is null;
+
+20)Find the employee whose commission is Rs.0.
+select ename, comm from emp
+where comm = 0;
+
+21)Find the different jobs of employees receiving commission.
+select ename, job, comm from emp
+where comm != null and comm != 0;
+
+22)find all employees who do not receive a commission or whose commission is less than Rs 100.
+select ename , comm from emp
+where comm is null or comm<100;
+
+23)Find all employees whose name begin with m.
+select ename from emp
+where ename like 'm%';
+
+24)Find all employees whose name ends with m.
+select ename from emp
+where ename like '%m';
+
+25)Find all employees whose name contain the letter m in any case.
+select ename from emp
+where ename like '%m%';
+
+26)Find all the employees whose name are 5 character long and end with n.
+select ename from emp
+where ename like '____n';
+
+27)Find the employees who have the letter r as a third letter in their name.
+select ename from emp
+where ename like '__r%';
+
+28)Find all employees hired in month of February (of any year).
+select ename, hiredate from emp
+where hiredate like '_____02%';
+
+29) Find the managers hired in the year 2012.
+select ename, job, hiredate from emp
+where job='manager' and hiredate between '2012-01-01' and '2012-12-31'; 
+
+30)Display the names of all employees with any a.
+select ename from emp
+where ename like '%a%';
+
+31)Display the names of all employees, and their bonus. Assume each employee get a bonus of 20% of their salary, do not show the names with bonus > 250.
+select ename, sal, sal*0.2 as bonus from emp
+where sal*0.2<250;
+
+32) Find the details of all managers in dept 10, all clerks in dept 20.
+select ename, job, deptno from emp
+where (job = 'manager' and deptno = 20) or (job = 'clerk' and deptno = 10);

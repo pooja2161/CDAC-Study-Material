@@ -1,0 +1,172 @@
+                         Name    :Swarda R. Adwanikar
+                         Form no:230602321
+                         Date :23 Sep 2023
+
+
+===============================================================================
+Assignment 6  
+===============================================================================
+QUESTION 2 :
+
+delimiter //
+create procedure check_grade()
+begin
+declare percentage varchar(40);
+set @a=70;
+if @a >= 80 then set percentage='Distinction';
+elseif @a >= 60 and @a < 80 then set percentage='First Class';
+elseif @a >= 50 and @a < 60 then set percentage='Second Class';
+elseif @a >= 40 and @a < 50 then set percentage='Pass Class';
+else 
+set percentage='Better Luck Next Time';
+end if;
+select percentage ;
+end; 
+//
+
+delimiter ;
+call check_grade;
+
++-------------+
+| percentage  |
++-------------+
+| First Class |
++-------------+
+
+
+=========================================================================
+QUESTION 3: 
+
+delimiter //
+create procedure compared_demo2()
+begin
+declare a int;
+declare b int;
+declare c int;
+declare result varchar(50);
+
+set @a=56;
+set @b=45;
+set @c=80;
+if a > b and a > c  then
+set result ='56 is greater';
+elseif b > a and b > c  then
+set result ='45 is greater';
+else
+set result ='80 is greater';
+end if;
+select result;
+end;
+//
+
+
+
+delimiter ;
+call compared_demo2;
+
+
++---------------+
+| result        |
++---------------+
+| 80 is greater |
++---------------+
+
+=================================================================================
+
+QUESTION 1:
+
+
+create table football_player(
+name varchar(20),
+age numeric(2),
+no_match numeric(3));
+
+insert into football_player values( 'Samar' , 22 , 5);
+insert into football_player values( 'Ram' , 24 , 4);
+
++-------+------+----------+
+| name  | age  | no_match |
++-------+------+----------+
+| Samar |   22 |        5 |
+| Ram   |   24 |        4 |
++-------+------+----------+
+
+
+create table cricket_player(
+name varchar(20),
+age numeric(2),
+no_match numeric(3));
+
+insert into cricket_player values( 'Samar' , 22 , 5);
+insert into cricket_player values( 'Ramesh' , 26 , 3);
+
++--------+------+----------+
+| name   | age  | no_match |
++--------+------+----------+
+| Samar  |   22 |        5 |
+| Ramesh |   26 |        3 |
++--------+------+----------+
+
+-------------------------------------------------------------------------
+union all :
+
+select name , age , no_match from football_player
+union all
+select name , age , no_match from cricket_player;
+
++--------+------+----------+
+| name   | age  | no_match |
++--------+------+----------+
+| Samar  |   22 |        5 |
+| Ram    |   24 |        4 |
+| Samar  |   22 |        5 |
+| Ramesh |   26 |        3 |
++--------+------+----------+
+
+--------------------------------------------------------------------
+Union :
+
+select name , age , no_match from football_player
+union 
+select name , age , no_match from cricket_player;
+
++--------+------+----------+
+| name   | age  | no_match |
++--------+------+----------+
+| Samar  |   22 |        5 |
+| Ram    |   24 |        4 |
+| Ramesh |   26 |        3 |
++--------+------+----------+
+
+------------------------------------------------------------------------
+
+union distinct :
+
+select name , age , no_match from football_player
+union distinct 
+select name , age , no_match from cricket_player;
+
++--------+------+----------+
+| name   | age  | no_match |
++--------+------+----------+
+| Samar  |   22 |        5 |
+| Ram    |   24 |        4 |
+| Ramesh |   26 |        3 |
++--------+------+----------+
+
+========================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

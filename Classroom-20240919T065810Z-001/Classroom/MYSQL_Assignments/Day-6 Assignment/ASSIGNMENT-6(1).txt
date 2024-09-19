@@ -1,0 +1,79 @@
++++++++ ASSIGNMENT 6 ++++++++++
+23 SEP 2023
+-----------
+SAGARIKA SINGHA
+----------------
+FORM NO- 230700024
+
+==========================================================================================================
+
+
+DELIMITER //
+
+CREATE PROCEDURE CHECK_GRADE()
+BEGIN
+  DECLARE PERCENTAGE VARCHAR(50);
+  SET @MARKS = 75;
+  
+  IF @MARKS >= 80 THEN
+    SET PERCENTAGE = 'PASSED WITH DISTINCTION';
+  ELSEIF @MARKS >= 60 AND @MARKS < 80 THEN
+    SET PERCENTAGE = 'PASSED WITH FIRST CLASS';
+  ELSEIF @MARKS >= 50 AND @MARKS < 60 THEN
+    SET PERCENTAGE = 'PASSED WITH SECOND CLASS';
+  ELSEIF @MARKS >= 40 AND @MARKS < 50 THEN
+    SET PERCENTAGE = 'PASSED WITH PASS CLASS';
+  ELSE
+    SET PERCENTAGE = 'BETTER LUCK NEXT TIME';
+  END IF;
+  
+  SELECT PERCENTAGE AS Result;
+END;
+//
+
+DELIMITER ;
+CALL CHECK_GRADE;
+
++-------------------------+
+| Result                  |
++-------------------------+
+| PASSED WITH FIRST CLASS |
++-------------------------+
+
+
+====================================================================================
+====================================================================================
+
+DELIMITER //
+
+CREATE PROCEDURE COMPARE_DEMO2()
+BEGIN
+  DECLARE NUM1 INT;
+  DECLARE NUM2 INT;
+  DECLARE NUM3 INT;
+  DECLARE RESULT VARCHAR(50);
+
+  SET NUM1 = 75;
+  SET NUM2 = 55;
+  SET NUM3 = 95;
+
+  IF NUM1 > NUM2 AND NUM1 > NUM3 THEN
+    SET RESULT = 'NUMBER1 = 75 IS GREATER';
+  ELSEIF NUM2 > NUM1 AND NUM2 > NUM3 THEN
+    SET RESULT = 'NUMBER2 = 55 IS GREATER';
+  ELSE
+    SET RESULT = 'NUMBER3 = 95 IS GREATER';
+  END IF;
+
+  SELECT RESULT;
+END;
+//
+
+DELIMITER ;
+ CALL COMPARE_DEMO2;
+
++-------------------------+
+| RESULT                  |
++-------------------------+
+| NUMBER3 = 95 IS GREATER |
++-------------------------+

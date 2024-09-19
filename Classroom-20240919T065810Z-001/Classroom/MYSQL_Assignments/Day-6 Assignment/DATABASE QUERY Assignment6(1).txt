@@ -1,0 +1,254 @@
+--eg create following table, insert 2 records and perform the set operators
+football_player    table
+name
+age
+no_matches
+mobile
+
+cricket_player    table
+name
+age_player
+No_matches
+
+
+Ans—--------------------------------------------------------------------------------------------------------------------------------------
+create table football_player
+(name varchar(20),
+age numeric(2),
+no_matches numeric(2),
+mobile numeric(10));
+
+insert into football_player values('sunil chhetri',42,25,9852562555);
+insert into football_player values('sahal abdul samad',40,29,8858855454);
+select * from football_player;
++-------------------+------+------------+------------+
+| name              | age  | no_matches | mobile     |
++-------------------+------+------------+------------+
+| sunil chhetri     |   42 |         25 | 9852562555 |
+| sahal abdul samad |   40 |         29 | 8858855454 |
++-------------------+------+------------+------------+
+2 rows in set (0.00 sec)
+======================================================
+
+create table Cricket_player
+(name varchar(20),
+age_player numeric(2),
+no_matches numeric(2));
+
+insert into Cricket_player values('sachin tendulkar',46,44);
+insert into Cricket_player values('Ms Dhoni',45,39);
+insert into Cricket_player values('sunil chhetri',42,25);
+
+select * from Cricket_player;
+
+
++------------------+------------+----------                             -+
+| name             |      age_player |       no_matches |
++------------------+------------+-----------                              -+     
+| sachin tendulkar |         46 |                44 |
+| Ms Dhoni         |              45 |                39 |
+| sunil chhetri    |              42 |                25 |
++------------------+------------+------------+
+3 rows in set (0.01 sec)
+
+========================================================
+mysql> select  name ,age,no_matches from football_player
+    -> union
+    -> select  name ,age_player,no_matches from Cricket_player;
++-------------------+------+------------+
+| name              | age  | no_matches |
++-------------------+------+------------+
+| sunil chhetri     |   42 |         25 |
+| sahal abdul samad |   40 |         29 |
+| sachin tendulkar  |   46 |         44 |
+| Ms Dhoni          |   45 |         39 |
++-------------------+------+------------+
+4 rows in set (0.00 sec)
+================================================================
+mysql>
+mysql> select  name ,age,no_matches from football_player
+    -> union all
+    -> select  name ,age_player,no_matches from Cricket_player;
++-------------------+------+------------+
+| name              | age  | no_matches |
++-------------------+------+------------+
+| sunil chhetri     |   42 |         25 |
+| sahal abdul samad |   40 |         29 |
+| sachin tendulkar  |   46 |         44 |
+| Ms Dhoni          |   45 |         39 |
+| sunil chhetri     |   42 |         25 |
++-------------------+------+------------+
+5 rows in set (0.00 sec)
+=========================================================================
+mysql>
+mysql> select  name ,age,no_matches from football_player
+    -> union distinct
+    -> select  name ,age_player,no_matches from Cricket_player;
++-------------------+------+------------+
+| name              | age  | no_matches |
++-------------------+------+------------+
+| sunil chhetri     |   42 |         25 |
+| sahal abdul samad |   40 |         29 |
+| sachin tendulkar  |   46 |         44 |
+| Ms Dhoni          |   45 |         39 |
++-------------------+------+------------+
+4 rows in set (0.00 sec)
+============================================================================
+mysql>
+mysql>
+mysql> select  name ,age,no_matches from football_player
+    -> intersect
+    -> select  name ,age_player,no_matches from Cricket_player;
++---------------+------+------------+
+| name          | age  | no_matches |
++---------------+------+------------+
+| sunil chhetri |   42 |         25 |
++---------------+------+------------+
+1 row in set (0.00 sec)
+==========================================================================
+select  name ,age,no_matches from football_player
+except
+select  name ,age_player,no_matches from Cricket_player;
+
+name	                age	no_matches
+sahal abdul samad	40	29
+****************************************************************************************************
+
+
+
+
+
+--assignment
+ create a stored procedure 'check_grade' , declare a variable percentage, store the value and check the foll conditions
+if  percentage >= 80    ---> display "distinction "
+if  percentage >= 60   and <80     ---> display "first class "
+if  percentage >= 50 and <60    ---> display "second class "
+if  percentage >= 40 and <50    ---> display "pass clas "
+else  "better luck next time"
+Ans—-------------------------------------------
+
+mysql> delimiter //
+mysql> create procedure check_grade8()
+    -> begin
+    ->     declare result varchar(30);
+    ->     set @per := 60;
+    ->     if @per >= 80 then
+    ->            select @result := 'distinction';
+    ->     elseif @per >= 60 and @per < 80 then
+    ->            select @result := 'first class';
+    ->     elseif @per >= 50 and @per < 60 then
+    ->            select @result := 'second class';
+    ->     elseif @per >= 40 and @per < 50 then
+    ->            select @result := 'pass class';
+    ->     else
+    ->            select @result := 'Better luck next time';
+    ->     end if;
+    ->     select @result;
+    -> end;
+    -> //
+Query OK, 0 rows affected, 5 warnings (0.01 sec)
+
+mysql> delimiter ;
+mysql> call check_grade8;
++--------------------------+
+| @result := 'first class' |
++--------------------------+
+| first class              |
++--------------------------+
+1 row in set (0.00 sec)
+
++-------------+
+| @result     |
++-------------+
+| first class |
++-------------+
+1 row in set (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+
+
+
+
+=========================
+--eg create a stored procedure 'compare_demo2' to store values in 3 variables and compare 3 var , display msg
+==================
+Ans==============
+mysql> delimiter ##
+mysql> create procedure compare_demo20()
+    -> begin
+    ->       declare result varchar(20);
+    ->       set @a := 100;
+    ->       set @b := 200;
+    ->       set @c := 600;
+    ->       if @a > @b and @a > @c then
+    ->              set @result := 'a is greater';
+    ->       elseif @b > @a and @b > @c then
+    ->              set @result := 'b is greater';
+    ->       else
+    ->              set @result := 'c is greater';
+    ->       end if;
+    ->       select @result;
+    -> end;
+    -> ##
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> delimiter ;
+mysql> call compare_demo20;
++--------------+
+| @result      |
++--------------+
+| c is greater |
++--------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+
+--eg create a stored procedure "update_sal" to 
+Ans========================================
+mysql> delimiter //
+mysql> create procedure update_sal1()
+    -> begin
+    ->      update employee
+    ->      set sal = sal + 500
+    ->      where ename = 'smith';
+    ->      update employee
+    ->      set sal = sal + 300
+    ->      where ename = 'Allen';
+    ->      select ename,sal from employee;
+    ->      select 'updated';
+    -> end;
+    -> //
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> delimiter ;
+mysql> call  update_sal1;
++--------+---------+
+| ename  | sal     |
++--------+---------+
+| SMITH  |    NULL |
+| ALLEN  | 1900.00 |
+| WARD   | 1250.00 |
+| JONES  | 2975.00 |
+| MARTIN | 1250.00 |
+| BLAKE  | 2850.00 |
+| CLARK  | 2450.00 |
+| SCOTT  | 3000.00 |
+| KING   | 5000.00 |
+| TURNER | 1500.00 |
+| ADAMS  | 1100.00 |
+| JAMES  |  950.00 |
+| FORD   | 3000.00 |
+| MILLER | 1300.00 |
++--------+---------+
+14 rows in set (0.05 sec)
+
++---------+
+| updated |
++---------+
+| updated |
++---------+
+1 row in set (0.06 sec)
+
+Query OK, 0 rows affected (0.07 sec)

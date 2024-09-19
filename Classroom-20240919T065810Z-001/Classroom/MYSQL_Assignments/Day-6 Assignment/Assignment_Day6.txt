@@ -1,0 +1,189 @@
+Assignment=>
+
+
+Q1)
+
+create table football_player(
+name varchar(20),
+age numeric(2),
+no_of_matches numeric(10));
+
+insert into football_player values ('Ronaldo',48,10);
+insert into football_player values ('Dhoni',45,20);
+insert into football_player values ('hardik',30,15);
+
++---------+------+---------------+
+| name    | age  | no_of_matches |
++---------+------+---------------+
+| Ronaldo |   48 |            10 |
+| Dhoni   |   45 |            20 |
+| hardik  |   30 |            15 |
++---------+------+---------------+
+
+create table cricket_player(
+name varchar(20),
+age numeric(2),
+no_of_matches numeric(10));
+
+insert into cricket_player values ('virat',38,5);
+insert into cricket_player values ('Dhoni',45,20);
+insert into cricket_player values ('ravindra',30,6);
+
++----------+------+---------------+
+| name     | age  | no_of_matches |
++----------+------+---------------+
+| virat    |   38 |             5 |
+| Dhoni    |   45 |            20 |
+| ravindra |   30 |             6 |
++----------+------+---------------+
+
+union===>
+select name,age,no_of_matches from football_player
+union
+select name,age,no_of_matches from cricket_player;
+
+
++----------+------+---------------+
+| name     | age  | no_of_matches |
++----------+------+---------------+
+| Ronaldo  |   48 |            10 |
+| Dhoni    |   45 |            20 |
+| hardik   |   30 |            15 |
+| virat    |   38 |             5 |
+| ravindra |   30 |             6 |
++----------+------+---------------+
+
+union all====>
+
+select name,age,no_of_matches from football_player
+union all
+select name,age,no_of_matches from cricket_player;
+
++----------+------+---------------+
+| name     | age  | no_of_matches |
++----------+------+---------------+
+| Ronaldo  |   48 |            10 |
+| Dhoni    |   45 |            20 |
+| hardik   |   30 |            15 |
+| virat    |   38 |             5 |
+| Dhoni    |   45 |            20 |
+| ravindra |   30 |             6 |
++----------+------+---------------+
+
+union distinct====>
+
+select name,age,no_of_matches from football_player
+union distinct
+select name,age,no_of_matches from cricket_player;
+
++----------+------+---------------+
+| name     | age  | no_of_matches |
++----------+------+---------------+
+| Ronaldo  |   48 |            10 |
+| Dhoni    |   45 |            20 |
+| hardik   |   30 |            15 |
+| virat    |   38 |             5 |
+| ravindra |   30 |             6 |
++----------+------+---------------+
+
+Q2)  
+
+create a stored procedure 'check_grade' , declare a variable percentage, store the value and check the foll conditions
+if  percentage >= 80	---> display "distinction "
+if  percentage >= 60   and <80 	---> display "first class "
+if  percentage >= 50 and <60	---> display "second class "
+if  percentage >= 40 and <50	---> display "pass clas "
+else  "better luck next time"
+
+
+delimiter ##
+    -> create procedure check_grade2()
+    -> begin
+    -> declare result varchar(30);
+    ->
+    -> set @percentage:=(@m1+@m2+@m3+@m4+@m5)/5;
+    -> set @m1:=78;
+    -> set @m2:=50;
+    -> set @m3:=65;
+    -> set @m4:=75;
+    -> set @m5:=85;
+    ->
+    -> if @percentage >=80 then
+    -> set @result := "Distinction";
+    ->
+    -> elseif @percentage >=60  and @percentage <80 then
+    -> set @result := "First class";
+    ->
+    -> elseif @percentage >=50 and @percentage <60 then
+    -> set @result := "Second class";
+    ->
+    -> elseif @percentage >=40 and @percentage <50 then
+    -> set @result := "Pass class";
+    ->
+    -> else
+    -> set @result := "Better luck next time";
+    -> end if;
+    -> select @result;
+    -> end;
+    -> ##
+
++-------------+
+| @result     |
++-------------+
+| First class |
++-------------+
+
+Q3)
+
+--eg create a stored procedure 'compare_demo2' to store values in 3 variables and compare 3 var , display msg
+
+
+delimiter //
+create procedure compare_demo2()
+begin
+declare result varchar(20);
+set @a:=30,@b:=20,@c:=40;
+
+if @a > @b && @a > @c then 
+   set @result:='a is greater';
+elseif @b > @a && @b > @c then
+set @result:='b is greater';
+else
+set @result:='c is greater';
+end if;
+select @result;
+end;
+//
+
+call compare_demo2();
+delimiter;
+
++--------------+
+| @result      |
++--------------+
+| c is greater |
++--------------+
+
+
+Q4)
+--eg create a stored procedure "update_sal" to 
+
+
+delimiter ##
+create procedure update_sal()
+begin
+   update emp set sal=sal+500 where ename='smith';
+   update emp set sal=sal+300 where ename='allen';
+select 'updated';
+end;
+##   
+
+
+delimiter ;
+call update_sal();
+
++---------+
+| updated |
++---------+
+| updated |
++---------+

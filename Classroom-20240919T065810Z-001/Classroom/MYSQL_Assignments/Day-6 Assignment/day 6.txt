@@ -1,0 +1,196 @@
+select * from emp1;
+
+select a.ename ,a.sal,b.ename as mgr_name,b.sal as mgr_sal from emp1 a ,emp1 b
+    -> where a.mgr=b.empno;
+
+select a.ename,a.job,a.deptno,b.ename,b.job,b.deptno from emp1 a,emp1 b
+    -> where a.job=b.job and a.deptno!=b.deptno
+    -> order by a.ename
+    -> ;
+
+create table location(
+    -> loc varchar(20),
+    -> remark varchar (20));
+insert into location values('new york','remark1');
+insert into location values('dallas','remark2');
+insert into location values('chicago','remark3');
+insert into location values('boston','remark4');
+
+select ename,sal,d.deptno,l.loc,dname ,remark from emp1 e,dept d,location l
+where e.deptno=d.deptno and d.loc=l.loc;
+
+create table present_car(
+model_no numeric(2),
+colour varchar(20),
+price numeric (10));
+
+insert into present_car values(1,'blue',100000);
+insert into present_car values(2,'red',540000);
+insert into present_car values(3,'black',320000);
+
+create table sold_car(
+model_no numeric(2),
+colour varchar(20),
+price numeric (10));
+
+insert into present_car values(1,'blue',100000);
+insert into present_car values(2,'gray',345000);
+insert into present_car values(3,'white',334000);
+
+ select model_no,colour,price from present_car
+ union
+ select model_no,colour,price from sold_car;
+
+select model_no,colour,price from present_car
+ union all
+ select model_no,colour,price from sold_car;
+
+assi :
+
+create table football(
+name varchar(20),
+age numeric(3),
+no_match numeric(3));
+
+
+insert into football values('aish',23,4);
+insert into football values('sayali',21,3);
+insert into football values('priya',25,4);
+
+create table cricket(
+name varchar(20),
+age numeric(3),
+no_match numeric(3));
+
+insert into cricket values('aish',23,4);
+insert into cricket values('sayali',21,3);
+insert into cricket values('arti',22,5);
+
+select name,age,no_match from football
+union
+select name,age,no_match from cricket;
+
+select name,age,no_match from football
+union all
+select name,age,no_match from cricket;
+
+
+oracle:
+
+  ROW_NUMBER()
+SELECT FIRST_NAME , AGE,COUNTRY,ROW_NUMBER()
+OVER(ORDER BY AGE DESC)RANK FROM CUSTOMERS;
+
+  RANK()
+SELECT FIRST_NAME , AGE,COUNTRY,RANK()
+OVER(ORDER BY AGE DESC)RANK FROM CUSTOMERS;
+
+DENSE_RANK()
+SELECT FIRST_NAME , AGE,COUNTRY,DENSE_RANK()
+OVER(ORDER BY AGE DESC)RANK FROM CUSTOMERS;
+
+_______________________________________________________________
+
+select ename , job,(case job
+when 'clerk' then 'c'
+when 'manager'then 'm'
+when 'analyst' then 'a'
+when 'salesman' then 's'
+when 'precident' then 'p'
+else 'other'
+end )as jobcode from emp1;
+
+
+set @name ='aish';
+select @name;
+
+set @eno=123,@job='manager',@add='mumbai' ;
+select @eno;
+
+
+select @max:=max(sal),@min:=min(sal) from emp1;
+
+
+delimiter $$
+create procedure update_sal()
+begin
+update emp1
+set sal=sal+500
+where ename ='smith';
+select 'update';
+
+end;
+$$
+
+delimiter $$
+create procedure compare_demo()
+begin
+declare result varchar(20);
+set @a=100;
+set @b=200;
+if @a>@b then 
+set @result:='a is greater ';
+elseif @a<@b then 
+set @result:='b is greater ';
+else 
+set @result:='same';
+end if ;
+select @result;
+
+end;
+$$
+
+delimiter $$
+create procedure compare_demo2()
+begin
+declare result varchar(20);
+set @a=100;
+set @b=200;
+set @c=150;
+if @a>@b then 
+set @result:='a is greater ';
+elseif @a<@b then 
+set @result:='b is greater ';
+elseif @b<@c then 
+set @result:='c is greater ';
+else
+set @result:='same';
+end if ;
+select @result;
+
+end;
+$$
+
+
+ drop procedure check_grade;
+    -> $$
+
+delimiter $$
+create procedure check_grade2()
+begin
+
+declare result varchar(30);
+declare percentage int;
+
+set @percentage:=70;
+
+if @percentage>=80 then
+set @result:='distinction';
+
+elseif @percentage>=60  then
+set @result:='first class';
+
+elseif @percentage>=50 then
+set @result:='second class';
+
+elseif @percentage>=40 then
+set @result:='pass class';
+else 
+set @result:='better luck next time';
+end if ;
+select @result;
+end;
+$$ 
+
+
+

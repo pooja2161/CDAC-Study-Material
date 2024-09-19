@@ -1,0 +1,7 @@
+display the name of the emp whoes sal is greater than sal of his manager
+select a.ename from emp1 a where a.sal >(select b.sal from emp1 b where a.mgr = b.empno)
+
+
+
+display the name of the emp whoes commission is lesser than commission  of his manager
+select a.ename from emp1 a where a.comm <(select b.comm from emp1 b where a.mgr = b.empno)

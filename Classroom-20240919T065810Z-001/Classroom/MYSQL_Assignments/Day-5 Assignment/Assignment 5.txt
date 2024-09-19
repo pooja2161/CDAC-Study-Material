@@ -1,0 +1,13 @@
+
+                            Assignment:5
+			======================
+
+1.  Display the name of the emp whoes sal is greater than sal of his manager.
+Ans.select a.ename from emp a
+    where a.sal>(select b.sal from emp b
+    where a.mgr=b.empno);
+
+2.  Display the name of the emp whoes commission is lesser than commission  of his manager.
+Ans.select a.ename from emp a
+    where a.comm>(select if null(b.sal,0) from emp b
+    where a.mgr=b.empno);

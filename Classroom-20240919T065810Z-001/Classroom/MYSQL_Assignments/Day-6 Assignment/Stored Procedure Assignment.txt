@@ -1,0 +1,101 @@
+Q.Create a stored procedure 'check_grade' declare a variable percentage, store the value and check the folloing condition
+  if percentage>=80 display "distinction"
+  if percentage>=60 and <80 display "firstclass"
+  if percentage>=50 and <60 display "secondclass"
+  if percentage>=40 and <50 display "pass"
+
+Ans.delimiter ##
+    create procedure check_grade()
+    begin
+    declare result varchar(40);
+    set @percentage:=90;
+    if @percentage>=80 then 
+    set @result:='Distinction';
+    elseif @percentage>=60 and @percentage<80 then
+    set @result:='Firtclass';
+    elseif @percentage>=50 and @percentage<60 then
+    set @result:='Secondclass';
+    elseif @percentage>=40 and @percentage<50 then
+    set @result:='Pass';
+    else
+    set result:="Beter luck next time";
+    end if;
+    select @result;
+    end;
+    ##
+    delimiter;
+    call check_grade();
+-----------------------------------------------------------------------------------------------
+
+Q.create following table, insert 2 records and perform the set operators
+ football_player table
+ name
+ age
+ no_matches
+ mobile
+ cricket_player table
+ name
+ age_player
+ no_matches
+
+Ans.create table football_player(
+    name char(10),
+    age numeric(2),
+    no_matches numeric(2),
+    mobile numeric(10));
+    insert into football_player values('ronaldo',40,30,9876543210);
+    insert into football_player values('messi',35,20,8866224400);
+
+    create table cricket_player(
+    name char(10),
+    age numeric(2),
+    no_matches numeric(2),
+    mobile numeric(10));
+    insert into cricket_player values('ronaldo',40,30,9876543210);
+    insert into cricket_player values('dhoni',45,99,8844226600);
+
+    select name,age,no_matches from football_player
+    union
+    select name,age,no_matches from cricket_player;
+
+    select name,age,no_matches from football_player
+    union all
+    select name,age,no_matches from cricket_player;
+
+    select name,age,no_matches from football_player
+    union distinct
+    select name,age,no_matches from cricket_player;
+----------------------------------------------------------------------------------------------------
+
+Q.create a stored procedure &#39;compare_demo2&#39; to store values in 3 variables and compare 3 var ,
+  display msg
+
+Ans.delimiter ##
+    create procedure compare_demo2()
+    begin
+    declare result varchar(40);
+    set @a:=2;
+    set @b:=4;
+    set @c:=6;
+    if @a>@b then
+    set @result:='a is greater';
+    elseif @a>@c then
+    set @result:='c is greater';
+    elseif @b>@c then
+    set @result:='b is greater';
+    else 
+    set @result:='c is grreater';
+    end if;
+    select @result;
+    end;
+    ##
+    delimiter;
+    call compare_demo2();
+    
+    
+    
+    
+
+     
+    
+    

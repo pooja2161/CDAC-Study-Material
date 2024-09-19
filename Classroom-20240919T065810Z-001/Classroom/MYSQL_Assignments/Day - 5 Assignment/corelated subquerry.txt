@@ -1,0 +1,16 @@
+1.mysql> select a.ename from emp a
+    -> where a.sal>(select b.sal from emp b  where a.mgr=b.empno);
++-------+
+| ename |
++-------+
+| FORD  |
+| SCOTT |
++-------+
+2 rows in set (0.00 sec)
+
+2.
+
+mysql> select a.ename from emp a
+    -> where a.comm <(select b.comm from emp b  where a.mgr=b.empno);
+Empty set (0.00 sec)
+
