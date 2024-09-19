@@ -1,0 +1,27 @@
+table{
+    border: 1px solid;
+    width: 1000px;
+    border-collapse: collapse;
+    margin: auto;
+    font-family: arial;
+}
+tr,td,th{
+    border: 1px solid;
+}
+td,th{
+    padding: 15px;
+    text-align: center;
+}
+
+thead tr{
+    background-color: #003D72;
+    /* 6 characters or 3 charact , 0-9 and a-f */
+    color: #ffffff;
+}
+/* css filters */
+tbody tr:nth-child(2n){
+    background-color: lightgray;
+}
+tbody tr:nth-child(2n+1){
+    background-color: gray;
+}

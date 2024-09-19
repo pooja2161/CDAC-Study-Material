@@ -1,0 +1,19 @@
+<div style="border: solid;width: 200px;text-align: center;height: 50px; display: none;">
+    <button>
+        Login
+    </button>
+</div>
+
+<script>
+    // callback function its a function passed into an outer function to perform some action 
+    // timer module or timer api
+
+    setTimeout(()=>{
+        document.querySelector('div').style.display='block';
+
+        setTimeout(()=>{
+            document.querySelector('div').style.display='none';
+        } , 3000);
+
+    } , 3000);
+</script>

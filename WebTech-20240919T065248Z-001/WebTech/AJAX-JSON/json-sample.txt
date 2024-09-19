@@ -1,0 +1,17 @@
+AJAX
+JSON
+------
+Jquery (Lib)
+
+http://icc.com/match/1000
+{
+    "match":1000,
+    "teams":{
+        "team1":"IND".
+        "team2":"Aus
+    },
+    "year":2023,
+    "result":"IND won by 3 wicket"
+}
+
+http://icc.com/player/sachin

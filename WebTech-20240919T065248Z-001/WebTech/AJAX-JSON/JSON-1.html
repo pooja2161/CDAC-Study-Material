@@ -1,0 +1,17 @@
+<script>
+    // JavaScript Object Into JSON STRING
+
+    var product = {
+        name:"Tshirt",
+        price:1000,
+        size:['small','medium','large'],
+        color:['black','blue','green','yellow'],
+        info:{
+            category:'Mens',subcategory:'mens wear'
+        }
+    }
+    console.log(typeof product , product);
+
+    var result = JSON.stringify(product);
+    console.log(typeof result , result);
+</script>

@@ -1,0 +1,18 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<button>Enter</button>
+
+<hr />
+
+<p style="border: solid;width: 100px;height: 100px;"></p>
+
+<script>
+    $('button').click(function(){
+        $("p").animate({
+            'margin-left':'300px',
+            'width':'300px',
+            'border-radius':'20%'
+        } , 2000);
+        $("p").text('Some Data');
+    });
+</script>

@@ -1,0 +1,19 @@
+<script>
+    var brands = ["nike",'puma','adidas','fila'];
+    console.log(brands);
+    // access values using index number
+    console.log(brands[0]);
+    console.log(brands[1]);
+    console.log(brands[9]); // undefined
+
+    // `` template literals can allow variables
+    document.write(
+        `
+            <li><input type="checkbox"> ${ brands[0] }</li>
+            <li><input type="checkbox"> ${ brands[1]}</li>
+            <li><input type="checkbox"> ${ brands[2]}</li>
+            <li><input type="checkbox"> ${ brands[3]} </li>
+        `
+    );
+</script>
+

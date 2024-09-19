@@ -1,0 +1,28 @@
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    /* make sure the width of the column */
+}
+@media screen and (max-width:600px){
+    /* body{
+        background-color: gray;;
+    } */
+    .container{
+        width: 100%;
+    }
+    .col-6{
+        width: 50%;
+    }
+}
+@media screen and (min-width:1200px){
+    /* body{
+        background-color: green;
+    } */
+    .container{
+        width: 1200px;
+        margin: auto;
+    }
+    .col-lg-3{
+        width: 25%;
+    }
+}

@@ -1,0 +1,22 @@
+<script>
+    var product = {
+        name:"Product 1",
+        price:1000,
+        path:"https://rukminim2.flixcart.com/image/612/612/xif0q/t-shirt/k/v/p/m-krop-t-shirt-205-211-full-round-kroptee-original-imaghmu5juhsshuf.jpeg?q=70",
+        size:["XL","XXL","M"]
+    }
+    console.log(product);
+    console.log(product.price);
+    console.log(product['price']);
+    document.write(
+        `           
+            <div>
+                <img src="${product.path}" alt="">
+                <h2>${product.price}</h2>
+                <p>
+                    <button>Add To Cart</button>
+                </p>
+            </div>
+        `
+    )
+</script>

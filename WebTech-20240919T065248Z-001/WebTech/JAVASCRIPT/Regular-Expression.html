@@ -1,0 +1,67 @@
+<script>
+    // anonymous function or unnamed function in javascript
+    var f1 = function(){
+        var a=10;
+        var b=10;
+        console.log(a+b);
+    }
+    f1();
+
+
+    // Arrow functions in JavaScript
+    var f2 = ()=>{
+        //ternary operator
+        var ans = (13 % 2 == 0) ? "Even" : "Odd";
+        console.log(ans);
+    }
+    f2();
+
+
+    /// Regular expression
+    /*
+        it is used to validate or fetch proper data from end user.
+
+        //  delimiters or boundary for regular expressions
+        /^/ to check first character in the string
+        /^$/ $ to check last character in the string
+
+        400011
+        []==> 1 is equal to 1 character
+        [1-9] => you may use any character between 1 and 9
+
+        [0-9]{5} range
+    */
+    var reg_pincode = /^[1-9][0-9][0-9][0-9][0-9][0-9]$/;
+    var pincode = 300001;
+    console.log( reg_pincode.test(pincode) ); //true or false
+
+    var reg_pincode = /^[1-9][0-9]{5}$/
+    var pincode = 300001;
+    console.log( reg_pincode.test(pincode) );
+
+    // (abcde)(1234)(r)
+
+var reg_pancard = /^([a-zA-Z]{5})([0-9]{4})([a-zA-Z])$/
+var pancard = "abcde4567j";
+console.log( reg_pancard.test(pancard) );
+
+
+var reg_mobile = /^[6-9][0-9]{9}$/
+var mobile = 9820092000;
+console.log( reg_mobile.test(mobile) );
+
+/*
+    om
+    omkar
+    omkar patil
+    omkar ram patil
+
+    ? optionals
+    ()? optional group
+*/
+
+var reg_name = /^[a-zA-Z]([a-zA-Z ]{1,})?[a-zA-Z]$/;
+var username = "Omkar Patil";
+console.log( reg_name.test(username) );
+
+</script>

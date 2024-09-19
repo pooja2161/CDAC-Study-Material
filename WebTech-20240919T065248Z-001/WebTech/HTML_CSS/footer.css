@@ -1,0 +1,21 @@
+.row{display: flex; flex-wrap: wrap;}
+
+/* for desktops or large desktops */
+@media screen and (min-width:1200px) {
+    .container{
+        width: 1200px;
+        margin: auto;
+    }
+    .col-lg-2{
+        width: 16.6666%;
+    }
+}
+/* for mobile screen */
+@media screen and (max-width:600px){
+    .container{
+        width:100%
+    }
+    .col-4{
+        width: 33.33%;
+    }
+}

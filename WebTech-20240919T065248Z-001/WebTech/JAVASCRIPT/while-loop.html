@@ -1,0 +1,42 @@
+<script>
+    var products = [
+        {
+            name:"Product 1",price:1000
+        },
+        {
+            name:"Product 2",price:2000
+        },
+        {
+            name:"Product 3",price:3000
+        }
+    ];
+    console.log(products);
+
+    var i=0;
+    while( i<products.length )
+    {
+        console.log(i , products[i] );
+        document.write(`
+            <div>
+                <h2>${ products[i].price }</h2>
+                <p>${ products[i].name }</p>
+            </div>
+        `);
+        i++;
+    }
+</script>
+<style>
+    div{border: solid; width: 200px; padding: 20px; float: left;}
+</style>
+<!-- 2 4 6 8 10 ?
+3 7 11 15 19 ?
+5 10 15 20 25 ? -->
+
+<script>
+    var a=3;
+    var d= 4;
+    for(n=1;n<=5;n++){
+        var ans = a + ((n-1)*d) ;
+        console.log(`${ans} `);
+    }
+</script>
